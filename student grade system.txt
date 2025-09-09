@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class StudentMarksManager {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of students: ");
+        int n = sc.nextInt();
+        sc.nextLine();  // consume newline
+
+        String[] names = new String[n];
+        int[] marks = new int[n];
+        char[] grades = new char[n];
+
+        // Input student details
+        for (int i = 0; i < n; i++) {
+            System.out.print("\nEnter name of student " + (i + 1) + ": ");
+            names[i] = sc.nextLine();
+
+            System.out.print("Enter marks of " + names[i] + " (0–100): ");
+            marks[i] = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            // Assign grade
+            if (marks[i] >= 90) {
+                grades[i] = 'A';
+            } else if (marks[i] >= 75) {
+                grades[i] = 'B';
+            } else if (marks[i] >= 50) {
+                grades[i] = 'C';
+            } else {
+                grades[i] = 'F';
+            }
+        }
+
+        // Display results
+        System.out.println("\n===== Student Results =====");
+        int total = 0;
+        for (int i = 0; i < n; i++) {
+            System.out.println(names[i] + " - Marks: " + marks[i] + " - Grade: " + grades[i]);
+            total += marks[i];
+        }
+
+        double average = (double) total / n;
+        System.out.println("\nClass Average Marks: " + average);
+
+        sc.close();
+    }
+}
